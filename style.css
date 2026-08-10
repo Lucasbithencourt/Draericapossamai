@@ -183,25 +183,34 @@ section {
 /* HERO                                                              */
 /* ================================================================= */
 .hero {
-  text-align: center;
   padding-top: 6rem;
   padding-bottom: 6rem;
   border-bottom: 1px solid var(--line);
   background:
-    radial-gradient(1200px 400px at 50% -10%, rgba(124, 139, 95, 0.10), transparent 70%),
+    radial-gradient(1200px 500px at 80% -10%, rgba(124, 139, 95, 0.12), transparent 70%),
     var(--bg);
 }
 
+/* Layout split: texto ~55% / visual ~45% (desktop) */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+.hero-text { text-align: left; }
+
 .hero h1 {
-  max-width: 16ch;
-  margin: 0 auto 1.2rem;
+  max-width: 18ch;
+  margin: 0 0 1.2rem;
 }
 
 .hero-sub {
   font-size: 1.2rem;
   color: var(--muted);
-  max-width: 60ch;
-  margin: 0 auto 1rem;
+  max-width: 52ch;
+  margin: 0 0 1rem;
   line-height: 1.55;
 }
 
@@ -210,7 +219,7 @@ section {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   margin-top: 0.5rem;
 }
@@ -248,6 +257,64 @@ section {
 
 .badge span {
   font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* ---- Coluna visual do hero (placeholder) ---- */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+/* Moldura retrato 4:5 com gradiente sálvia-claro → off-white */
+.hero-frame {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, rgba(124, 139, 95, 0.22), var(--bg) 78%);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Ilustração central (traço fino, baixa opacidade) */
+.hero-frame-art {
+  width: 55%;
+  height: auto;
+  color: var(--sage-dark);
+  opacity: 0.35;
+}
+
+/* Selo flutuante de prova social sobre a moldura */
+.hero-proof {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+  box-shadow: var(--shadow-hover);
+}
+
+.hero-proof strong {
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--sage-dark);
+  line-height: 1;
+}
+
+.hero-proof span {
+  font-size: 0.78rem;
   color: var(--muted);
 }
 
@@ -643,6 +710,18 @@ address strong { color: var(--sage-dark); }
 
 /* ---- TABLET (641–1024px) ---- */
 @media (max-width: 1024px) {
+  /* Hero empilha: texto centralizado em cima, visual embaixo (split só no desktop) */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    justify-items: center;
+  }
+  .hero-text { text-align: center; }
+  .hero h1 { max-width: 20ch; margin-left: auto; margin-right: auto; }
+  .hero-sub { max-width: 60ch; margin-left: auto; margin-right: auto; }
+  .badges { justify-content: center; }
+  .hero-frame { max-width: 340px; }
+
   .cards {
     grid-template-columns: repeat(2, 1fr); /* mantém 2 colunas no tablet */
   }

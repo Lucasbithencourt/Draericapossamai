@@ -87,33 +87,65 @@
   <!-- 1. HERO                                                       -->
   <!-- ============================================================= -->
   <section class="hero" id="inicio" aria-labelledby="hero-title">
-    <div class="container">
-      <!-- FOTO: Dra. Érica sorrindo no consultório (imagem de destaque do hero) -->
-      <h1 id="hero-title">Alinhe seus dentes e conquiste o sorriso que você deseja</h1>
-      <p class="hero-sub">
-        Tratamento ortodôntico com planejamento digital, conduzido por especialista.
-        Agende uma avaliação e entenda, com clareza, o caminho para alinhar seus dentes e sua mordida.
-      </p>
+    <div class="container hero-grid">
 
-      <a class="btn btn-cta btn-lg"
-         href="https://wa.me/554899569826?text=Ol%C3%A1%2C%20Dra.%20%C3%89rica!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20ortodontia."
-         target="_blank" rel="noopener">Agendar avaliação pelo WhatsApp</a>
+      <!-- Coluna de texto (~55%) -->
+      <div class="hero-text">
+        <h1 id="hero-title">Alinhe seus dentes e conquiste o sorriso que você deseja</h1>
+        <p class="hero-sub">
+          Tratamento ortodôntico com planejamento digital, conduzido por especialista.
+          Agende uma avaliação e entenda, com clareza, o caminho para alinhar seus dentes e sua mordida.
+        </p>
 
-      <!-- Selos de credibilidade -->
-      <ul class="badges" aria-label="Credenciais">
-        <li class="badge">
-          <strong>11 anos</strong>
-          <span>de experiência clínica</span>
-        </li>
-        <li class="badge">
-          <strong>+6 mil</strong>
-          <span>pacientes atendidos</span>
-        </li>
-        <li class="badge">
-          <strong>5.0 estrelas</strong>
-          <span>no Google e no Doctoralia</span>
-        </li>
-      </ul>
+        <a class="btn btn-cta btn-lg"
+           href="https://wa.me/554899569826?text=Ol%C3%A1%2C%20Dra.%20%C3%89rica!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20ortodontia."
+           target="_blank" rel="noopener">Agendar avaliação pelo WhatsApp</a>
+
+        <!-- Selos de credibilidade -->
+        <ul class="badges" aria-label="Credenciais">
+          <li class="badge">
+            <strong>11 anos</strong>
+            <span>de experiência clínica</span>
+          </li>
+          <li class="badge">
+            <strong>+6 mil</strong>
+            <span>pacientes atendidos</span>
+          </li>
+          <li class="badge">
+            <strong>5.0 estrelas</strong>
+            <span>no Google e no Doctoralia</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Coluna visual (~45%) -->
+      <!-- SUBSTITUIR: foto profissional real da Dra. Érica (retrato, fundo neutro, mesma linha das fotos do Instagram dela) — remover o placeholder SVG quando a foto chegar -->
+      <div class="hero-visual">
+        <div class="hero-frame">
+          <!-- Ilustração placeholder: sorriso estilizado, traço fino sálvia-escuro, decorativa -->
+          <svg class="hero-frame-art" viewBox="0 0 200 250" aria-hidden="true" focusable="false">
+            <g fill="none" stroke="currentColor" stroke-width="3"
+               stroke-linecap="round" stroke-linejoin="round">
+              <!-- arco do sorriso -->
+              <path d="M64 120 Q100 165 136 120" />
+              <!-- linha dos dentes -->
+              <path d="M64 120 L136 120" />
+              <path d="M82 120 L82 146" />
+              <path d="M100 121 L100 150" />
+              <path d="M118 120 L118 146" />
+              <!-- brilho / detalhe -->
+              <path d="M150 92 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 z" stroke-width="2" />
+            </g>
+          </svg>
+
+          <!-- Selo flutuante de prova social (decorativo perto da imagem) -->
+          <div class="hero-proof" aria-hidden="true">
+            <strong>5.0 ★</strong>
+            <span>no Google</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
