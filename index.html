@@ -119,24 +119,12 @@
       </div>
 
       <!-- Coluna visual (~45%) -->
-      <!-- SUBSTITUIR: foto profissional real da Dra. Érica (retrato, fundo neutro, mesma linha das fotos do Instagram dela) — remover o placeholder SVG quando a foto chegar -->
       <div class="hero-visual">
         <div class="hero-frame">
-          <!-- Ilustração placeholder: sorriso estilizado, traço fino sálvia-escuro, decorativa -->
-          <svg class="hero-frame-art" viewBox="0 0 200 250" aria-hidden="true" focusable="false">
-            <g fill="none" stroke="currentColor" stroke-width="3"
-               stroke-linecap="round" stroke-linejoin="round">
-              <!-- arco do sorriso -->
-              <path d="M64 120 Q100 165 136 120" />
-              <!-- linha dos dentes -->
-              <path d="M64 120 L136 120" />
-              <path d="M82 120 L82 146" />
-              <path d="M100 121 L100 150" />
-              <path d="M118 120 L118 146" />
-              <!-- brilho / detalhe -->
-              <path d="M150 92 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 z" stroke-width="2" />
-            </g>
-          </svg>
+          <!-- Foto real. Acima da dobra no desktop (candidata a LCP): sem lazy, com fetchpriority alta. -->
+          <img class="hero-photo" src="ERICA.jpg"
+               alt="Dra. Érica Possamai, ortodontista em Criciúma"
+               fetchpriority="high" decoding="async">
 
           <!-- Selo flutuante de prova social (decorativo perto da imagem) -->
           <div class="hero-proof" aria-hidden="true">
