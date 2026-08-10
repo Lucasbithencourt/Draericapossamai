@@ -57,6 +57,14 @@ img {
 
 a { color: inherit; }
 
+/* Foco de teclado visível e consistente (não removemos o outline nativo;
+   apenas o reforçamos na cor da marca para todos os elementos interativos) */
+:focus-visible {
+  outline: 3px solid var(--sage-dark);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* ---- Container de leitura ---- */
 .container {
   width: 100%;
@@ -549,14 +557,16 @@ address strong { color: var(--sage-dark); }
 
 .site-footer strong { color: #fff; }
 
+/* Link off-white sublinhado (contraste AA ~11:1 sobre o carvão);
+   o sublinhado garante que não dependa apenas da cor. Sálvia no hover. */
 .site-footer a {
-  color: var(--sage);
-  text-decoration: none;
+  color: var(--bg);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .site-footer a:hover {
-  color: #fff;
-  text-decoration: underline;
+  color: var(--sage);
 }
 
 .disclaimer {
