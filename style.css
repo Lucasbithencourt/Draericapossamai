@@ -1,0 +1,714 @@
+/* =================================================================
+   Dra. Érica Possamai — Landing Page
+   ETAPA 2: Identidade visual (verde-sálvia + neutros quentes).
+   Foco: pele visual em DESKTOP. Responsividade fina e JS = próxima etapa.
+   ================================================================= */
+
+/* ---- Tokens de marca ---- */
+:root {
+  --bg:            #FAF8F3; /* off-white quente (fundo principal) */
+  --surface:       #FFFFFF; /* branco puro (cards) */
+  --surface-warm:  #F3EFE6; /* bege claro (depoimentos, blocos alternados) */
+  --sage:          #7C8B5F; /* verde-sálvia (detalhes decorativos: ícones, bordas, hover claro) */
+  --sage-dark:     #5C6B45; /* verde-sálvia escuro (fundo de botões / textos de destaque) — AA */
+  --sage-darker:   #4A5738; /* verde ainda mais escuro (hover dos botões) */
+  --ink:           #2B2A26; /* texto principal (carvão quente) */
+  --muted:         #6B6862; /* texto secundário (cinza quente) */
+  --line:          #E8E2D5; /* bordas / divisórias (bege claro) */
+  --on-sage:       #FAF8F3; /* texto claro sobre verde */
+
+  --radius:        8px;
+  --radius-lg:     14px;
+  --shadow:        0 2px 10px rgba(43, 42, 38, 0.06), 0 8px 24px rgba(43, 42, 38, 0.05);
+  --shadow-hover:  0 4px 14px rgba(43, 42, 38, 0.10), 0 12px 32px rgba(43, 42, 38, 0.08);
+
+  --font-title: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body:  "Jost", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ---- Reset mínimo ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;               /* trava scroll horizontal acidental */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a { color: inherit; }
+
+/* ---- Container de leitura ---- */
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ---- Tipografia / hierarquia ---- */
+h1, h2, h3 {
+  font-family: var(--font-title);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+
+/* Escala fluida com clamp() para não estourar em telas pequenas */
+h1 { font-size: clamp(2.1rem, 6vw, 3rem); font-weight: 600; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); margin-bottom: 1.2rem; }
+h3 { font-size: 1.3rem; }
+
+p { margin-bottom: 1rem; }
+
+/* Seções: respiro generoso; alternância de fundos */
+section {
+  padding: 4.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Seções com fundo branco alternado para separar blocos */
+#diferenciais,
+#faq {
+  background: var(--surface);
+}
+
+/* ================================================================= */
+/* HEADER                                                            */
+/* ================================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  background: rgba(250, 248, 243, 0.92);
+  backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 1px 8px rgba(43, 42, 38, 0.05);
+  z-index: 20;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.brand {
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.brand-sub {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+/* ================================================================= */
+/* BOTÕES / CTA                                                      */
+/* ================================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;                /* área de toque confortável (AA / mobile) */
+  text-decoration: none;
+  background: var(--sage-dark);    /* fundo AA: ~4.9:1 com texto branco */
+  color: #fff;
+  border: 1px solid var(--sage-dark);
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn:hover {
+  background: var(--sage-darker);
+  border-color: var(--sage-darker);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.btn-lg {
+  padding: 1rem 2.2rem;
+  font-size: 1.1rem;
+  border-radius: var(--radius-lg);
+  margin: 1rem 0 2rem;
+  box-shadow: var(--shadow);
+}
+
+/* ================================================================= */
+/* HERO                                                              */
+/* ================================================================= */
+.hero {
+  text-align: center;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(1200px 400px at 50% -10%, rgba(124, 139, 95, 0.10), transparent 70%),
+    var(--bg);
+}
+
+.hero h1 {
+  max-width: 16ch;
+  margin: 0 auto 1.2rem;
+}
+
+.hero-sub {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 60ch;
+  margin: 0 auto 1rem;
+  line-height: 1.55;
+}
+
+/* Selos de credibilidade — pills discretos */
+.badges {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.85rem 1.6rem;
+  box-shadow: var(--shadow);
+}
+
+/* Pequeno ícone (ponto sálvia) antes do número do selo */
+.badge strong::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.4rem;
+  border-radius: 50%;
+  background: var(--sage);
+  vertical-align: middle;
+}
+
+.badge strong {
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 1.35rem;
+  color: var(--sage-dark);
+}
+
+.badge span {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* ================================================================= */
+/* SOBRE                                                             */
+/* ================================================================= */
+#sobre p {
+  font-size: 1.12rem;
+  color: var(--ink);
+  max-width: 68ch;
+  line-height: 1.7;
+}
+
+/* ================================================================= */
+/* CARDS DE DIFERENCIAIS                                             */
+/* ================================================================= */
+.cards {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colunas no desktop */
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Ícone no topo do card (disco sálvia decorativo) */
+.card::before {
+  content: "";
+  display: block;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  background: var(--sage);
+  box-shadow: inset 0 0 0 6px rgba(250, 248, 243, 0.35);
+}
+
+.card h3 { color: var(--sage-dark); }
+
+.card p {
+  margin-bottom: 0;
+  font-size: 0.98rem;
+  color: var(--muted);
+}
+
+/* ================================================================= */
+/* PASSOS (COMO FUNCIONA)                                            */
+/* ================================================================= */
+.steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* horizontal no desktop */
+  gap: 1.5rem;
+}
+
+.step {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #fff;
+  background: var(--sage);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.step h3 {
+  font-size: 1.15rem;
+  color: var(--sage-dark);
+}
+
+.step p {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* ================================================================= */
+/* DEPOIMENTOS                                                       */
+/* ================================================================= */
+#depoimentos { text-align: center; }
+
+.rating-note {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+.rating-note strong { color: var(--sage-dark); }
+
+.testimonials {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.testimonial {
+  position: relative;
+  background: var(--surface-warm);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 2.75rem 1.75rem 1.75rem;
+  box-shadow: var(--shadow);
+}
+
+/* Aspas estilizadas decorativas */
+.testimonial::before {
+  content: "\201C";
+  position: absolute;
+  top: 0.5rem;
+  left: 1.25rem;
+  font-family: var(--font-title);
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--sage);
+  opacity: 0.4;
+}
+
+.testimonial blockquote p {
+  font-size: 1.05rem;
+  color: var(--ink);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.testimonial-author {
+  font-weight: 600;
+  color: var(--sage-dark);
+  margin-bottom: 0;
+}
+
+.testimonial-source {
+  display: block;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+/* ================================================================= */
+/* FAQ (details/summary estilizado)                                 */
+/* ================================================================= */
+.faq {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.faq details {
+  border-bottom: 1px solid var(--line);
+  padding: 1.15rem 0;
+}
+
+.faq details:first-of-type { border-top: 1px solid var(--line); }
+
+.faq summary {
+  font-weight: 600;
+  font-size: 1.08rem;
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;               /* remove marcador nativo */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 44px;               /* área de toque confortável */
+  padding: 0.35rem 0;
+}
+
+.faq summary::-webkit-details-marker { display: none; }
+
+/* Marcador "+" personalizado que vira "−" ao abrir */
+.faq summary::after {
+  content: "+";
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--sage);
+  transition: transform 0.2s ease;
+}
+
+.faq details[open] summary::after {
+  content: "\2212"; /* sinal de menos */
+}
+
+.faq details[open] summary { margin-bottom: 0.75rem; }
+
+.faq p {
+  margin-bottom: 0;
+  font-size: 0.98rem;
+  color: var(--muted);
+  max-width: 68ch;
+}
+
+/* ================================================================= */
+/* LOCALIZAÇÃO                                                       */
+/* ================================================================= */
+#localizacao { background: var(--surface-warm); }
+
+address {
+  font-style: normal;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+address strong { color: var(--sage-dark); }
+
+.map-embed {
+  border-radius: var(--radius-lg);
+  overflow: hidden;                /* respeita os cantos arredondados no iframe */
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  line-height: 0;                  /* remove gap abaixo do iframe */
+}
+
+.map-embed iframe {
+  width: 100%;
+  height: 360px;
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .map-embed iframe { height: 280px; }
+}
+
+/* ================================================================= */
+/* CTA FINAL                                                         */
+/* ================================================================= */
+#cta-final {
+  text-align: center;
+  background: var(--sage-dark);
+  border-bottom: none;
+}
+
+#cta-final h2,
+#cta-final p {
+  color: var(--on-sage);
+}
+
+#cta-final h2 { color: #fff; }
+
+#cta-final p {
+  max-width: 60ch;
+  margin: 0 auto 1rem;
+  opacity: 0.92;
+}
+
+/* Botão em contraste (creme sobre verde) */
+#cta-final .btn {
+  background: var(--bg);
+  color: var(--sage-dark);
+  border-color: var(--bg);
+}
+
+#cta-final .btn:hover {
+  background: #fff;
+  border-color: #fff;
+  color: var(--sage-dark);
+}
+
+/* ================================================================= */
+/* FOOTER                                                            */
+/* ================================================================= */
+.site-footer {
+  padding: 3rem 0;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 0.92rem;
+  border-bottom: none;
+}
+
+.site-footer p {
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.site-footer strong { color: #fff; }
+
+.site-footer a {
+  color: var(--sage);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.disclaimer {
+  font-size: 0.8rem;
+  opacity: 0.65;
+  margin-top: 1.25rem;
+  max-width: 80ch;
+}
+
+/* ================================================================= */
+/* BOTÃO FLUTUANTE DE WHATSAPP                                       */
+/* ================================================================= */
+.whatsapp-float {
+  position: fixed;
+  right: 1.25rem;
+  /* respeita a safe-area do iOS (notch / home indicator) */
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;             /* verde oficial do WhatsApp (contraste com ícone branco) */
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(43, 42, 38, 0.28);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 22px rgba(43, 42, 38, 0.34);
+}
+
+.whatsapp-float svg {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+/* ================================================================= */
+/* MICRO-INTERAÇÕES — reveal (fade-in + translateY)                  */
+/* Progressive enhancement: sem JS, o conteúdo permanece visível.    */
+/* A classe .reveal só é aplicada pelo script.js quando há JS.       */
+/* ================================================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Se o usuário prefere menos movimento, nada é ocultado nem animado */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ================================================================= */
+/* RESPONSIVIDADE                                                    */
+/* Base do CSS = desktop (1025px+). Abaixo, ajustes tablet e mobile. */
+/* ================================================================= */
+
+/* ---- TABLET (641–1024px) ---- */
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr); /* mantém 2 colunas no tablet */
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, 1fr); /* passos em 2x2 no tablet */
+  }
+
+  .testimonials {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---- MOBILE (até 640px) ---- */
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+
+  .container { padding: 0 1.1rem; }
+
+  section { padding: 3rem 0; }
+
+  /* Header: reduz padding e encolhe o CTA para não estourar */
+  .header-inner {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .brand { font-size: 1.05rem; }
+
+  .header-inner .btn {
+    padding: 0.55rem 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  /* Hero: menos respiro, botão em largura confortável de toque */
+  .hero {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .hero-sub { font-size: 1.05rem; }
+
+  .hero .btn-lg {
+    display: flex;
+    width: 100%;
+    padding: 1rem 1.25rem;
+  }
+
+  /* Selos empilhados e mais largos */
+  .badges { gap: 0.6rem; }
+  .badge {
+    flex: 1 1 100%;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Cards de diferenciais: 1 coluna */
+  .cards { grid-template-columns: 1fr; }
+
+  /* Passos: empilhados verticalmente */
+  .steps { grid-template-columns: 1fr; }
+
+  /* Depoimentos: 1 coluna */
+  .testimonials { grid-template-columns: 1fr; }
+
+  /* CTA final ocupa a largura toda */
+  #cta-final .btn-lg {
+    display: flex;
+    width: 100%;
+  }
+
+  /* Botão flutuante um pouco menor no mobile */
+  .whatsapp-float {
+    width: 54px;
+    height: 54px;
+    right: 1rem;
+  }
+  .whatsapp-float svg { width: 28px; height: 28px; }
+}

@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Dependências (caso venham a existir)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Editores / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs e temporários
+*.log
