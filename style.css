@@ -319,13 +319,45 @@ section {
 }
 
 /* ================================================================= */
-/* SOBRE                                                             */
+/* SOBRE (layout split: texto + placeholder, no espírito do hero)    */
 /* ================================================================= */
+.about-grid {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+.about-text { text-align: left; }
+
 #sobre p {
   font-size: 1.12rem;
   color: var(--ink);
-  max-width: 68ch;
   line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.about-visual {
+  display: flex;
+  justify-content: center;
+}
+
+/* Ilustração central do placeholder (traço fino, baixa opacidade) */
+.about-frame-art {
+  width: 55%;
+  height: auto;
+  color: var(--sage-dark);
+  opacity: 0.35;
+}
+
+/* Empilha no tablet/mobile: texto em cima, imagem embaixo */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .about-text { text-align: center; }
+  #sobre p { margin-left: auto; margin-right: auto; max-width: 62ch; }
 }
 
 /* ================================================================= */
