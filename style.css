@@ -418,6 +418,56 @@ section {
 }
 
 /* ================================================================= */
+/* RESULTADOS REAIS                                                  */
+/* ================================================================= */
+#resultados { text-align: center; }
+
+/* Subtítulo curto reutilizável */
+.section-lead {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 60ch;
+  margin: 0 auto 2rem;
+  line-height: 1.55;
+}
+
+.results-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas no desktop */
+  gap: 1.5rem;
+}
+
+.result-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;                /* imagem respeita os cantos arredondados */
+  box-shadow: var(--shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.result-card img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 5;             /* moldura consistente entre casos */
+  object-fit: cover;
+  display: block;
+}
+
+.results-disclaimer {
+  margin: 1.75rem auto 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+/* ================================================================= */
 /* DEPOIMENTOS                                                       */
 /* ================================================================= */
 #depoimentos { text-align: center; }
@@ -780,6 +830,9 @@ address strong { color: var(--sage-dark); }
 
   /* Cards de diferenciais: 1 coluna */
   .cards { grid-template-columns: 1fr; }
+
+  /* Resultados: 1 coluna */
+  .results-grid { grid-template-columns: 1fr; }
 
   /* Passos: empilhados verticalmente */
   .steps { grid-template-columns: 1fr; }
