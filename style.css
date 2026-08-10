@@ -660,7 +660,7 @@ address strong { color: var(--sage-dark); }
 /* FOOTER                                                            */
 /* ================================================================= */
 .site-footer {
-  padding: 3rem 0;
+  padding: 3.5rem 0 2.5rem;
   background: var(--ink);
   color: var(--bg);
   font-size: 0.92rem;
@@ -674,23 +674,104 @@ address strong { color: var(--sage-dark); }
 
 .site-footer strong { color: #fff; }
 
-/* Link off-white sublinhado (contraste AA ~11:1 sobre o carvão);
-   o sublinhado garante que não dependa apenas da cor. Sálvia no hover. */
+/* Grid de 3 colunas (desktop) */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr;
+  gap: 3rem;
+}
+
+/* Título de coluna: caixa alta pequena, como os outros títulos pequenos do site */
+.footer-title {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #A8B98C;                  /* sálvia claro — AA 6.83:1 sobre o carvão */
+  margin-bottom: 1rem;
+}
+
+.footer-col p { opacity: 0.9; }
+
+/* Links do rodapé em sálvia claro (AA 6.83:1); branco no hover */
 .site-footer a {
-  color: var(--bg);
+  color: #A8B98C;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #fff;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.site-footer a:hover {
-  color: var(--sage);
+/* Lista de navegação */
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+/* Endereço: sobrescreve o estilo global de <address> (que é escuro) */
+.footer-address {
+  font-style: normal;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--bg);
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+
+/* Botão "Agendar pelo WhatsApp" — contorno sálvia claro */
+.footer-wa {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 0.75rem;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid #A8B98C;
+  border-radius: var(--radius);
+  color: #A8B98C !important;       /* garante o tom mesmo com regra de link */
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.footer-wa:hover {
+  background: #A8B98C;
+  color: var(--ink) !important;
+}
+
+/* Linha inferior separada por borda sutil */
+.footer-bottom {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(250, 248, 243, 0.15);
 }
 
 .disclaimer {
   font-size: 0.8rem;
-  opacity: 0.65;
-  margin-top: 1.25rem;
-  max-width: 80ch;
+  opacity: 0.6;
+  max-width: 90ch;
+  margin-bottom: 0.6rem;
+}
+
+.footer-proto {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  margin-bottom: 0;
+}
+
+/* Rodapé empilha em 1 coluna no mobile */
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 /* ================================================================= */
